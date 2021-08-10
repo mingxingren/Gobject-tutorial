@@ -95,7 +95,7 @@ The suffix of the function name, `double` in `g_param_spec_double`, implies the 
 - The description is "Double value".
 - The minimum value is -MAXDOUBLE.
 MAXDOUBLE is the maximum value which can be held in a double.
-It is described in [GLib API reference](https://developer.gnome.org/glib/stable/glib-Basic-Types.html#G-MINDOUBLE:CAPS).
+It is described in [GLib manual, MAXDOUBLE and MINDOUBLE](https://developer-old.gnome.org/glib/stable/glib-Basic-Types.html#G-MINDOUBLE:CAPS).
 You might think the lowest value of double is MINDOUBLE, but it's not.
 MINDOUBLE is the minimum positive value which can be held in a double.
 - The maximum value is MAXDOUBLE.
@@ -103,11 +103,13 @@ MINDOUBLE is the minimum positive value which can be held in a double.
 - `G_PARAM_READWRITE` is a flag.
 `G_PARAM_READWRITE` means that the parameter is readable and writable.
 
-For further information, refer to GObject API reference, [Parameters and Values](https://developer.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html#) and [GParamSpec](https://developer.gnome.org/gobject/stable/gobject-GParamSpec.html#).
+For further information, refer to GObject API reference,
+ [GObject manual, Parameters and Values](https://developer-old.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html)
+ and [GObject manual, GParamSpec](https://developer-old.gnome.org/gobject/stable/gobject-GParamSpec.html).
 
 When GObject property is registered, GParamSpec is used.
 This is extracted from tdouble.c in [src/tdouble6](tdouble6).
- 
+
 ~~~C
 #define PROP_DOUBLE 1
 static GParamSpec *double_property = NULL;
@@ -151,7 +153,7 @@ Look at the diagram below.
 ![Overriding `set_property` class method](../image/class_property1.png)
 
 `set_property` in GObjectClass class points `g_object_do_set_property` in gobject program, which is made by compiling `gobject.c`.
-The GObjectClass part of the TDoubleClass structure (it is the same as TDoubleClass because TDoubleClass doesn't have its own area) is initialized by copying from the contents of GObjectlass.
+The GObjectClass part of the TDoubleClass structure (it is the same as TDoubleClass because TDoubleClass doesn't have its own area) is initialized by copying from the contents of GObjectClass.
 Therefore, `set_property` in TDoubleClass class points `g_object_do_set_property` in gobject program.
 But `g_object_do_set_property` doesn't store the value to the TDouble instance.
 The writer of TDouble object makes `t_double_set_property` function in `tdouble.c`.
@@ -187,7 +189,7 @@ If the type of a GValue `value` is `G_TYPE_DOUBLE`, `value` can be get with `g_v
 GValue value;
 value = ... ... ... (a GValue object is assigned. Its type is double.)
 double v;
-v = g_value_get_double (value);
+v = g_value_get_double (&value);
 ~~~
 
 Conversely, you can set Gvalue `value` with `g_value_set_double`.
@@ -198,8 +200,8 @@ g_value_set_double (value, 123.45);
 
 Refer to GObject API reference for further information.
 
-- [II API reference, Generic values](https://developer.gnome.org/gobject/stable/gobject-Generic-values.html)
-- [II API reference, Parameters and Values](https://developer.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html)
+- [GObject manual, Generic values](https://developer-old.gnome.org/gobject/stable/gobject-Generic-values.html)
+- [GObject manual, Parameters and Values](https://developer-old.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html)
 
 ## t\_double\_set\_property and t\_double\_get\_property
 
